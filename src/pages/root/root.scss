@@ -1,0 +1,18 @@
+.app-header {
+  padding: 50px 0;
+  background: #FAFAFA;
+}
+
+.stories {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.stories__item {
+  margin-right: 30px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

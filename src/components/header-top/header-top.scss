@@ -1,0 +1,32 @@
+.header__logo {
+  width: 175px;
+  color: #292929;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__btn{
+  display: inline-block;
+  width: 25px;
+  overflow: hidden;
+  color: #292929;
+  margin-left: 24px;
+  min-height: 20px;
+  &:first-child {
+    margin-left: 0;
+  }
+  &_avatar {
+    width: auto;
+  }
+}
+
+.header__avatar {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  background: url('https://avatars.mds.yandex.net/get-yapic/33202/LDBi8z2G737aAHXq7Gcdh5xqY04-1/islands-300') center center / contain;
+}

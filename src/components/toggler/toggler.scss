@@ -1,0 +1,22 @@
+.toggler__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+
+  .toggler__icon {
+    width: 10px;
+    transform: rotate(180deg);
+  }
+
+  &.active {
+    .toggler__icon {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+.toggler__text {
+  margin-right: 5px;
+}
+
+   
