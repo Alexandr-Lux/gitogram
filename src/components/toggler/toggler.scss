@@ -5,12 +5,11 @@
 
   .toggler__icon {
     width: 10px;
-    transform: rotate(180deg);
   }
 
   &.active {
     .toggler__icon {
-      transform: rotate(0deg);
+      transform: rotate(180deg);
     }
   }
 }

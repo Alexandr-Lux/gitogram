@@ -17,12 +17,12 @@
     </app-header>
   </div>
   <div class="app-feed">
-    <div class="container">
+    <div class="container container_small">
       <ul class="feeds">
         <li class="feeds__item">
-          <app-feed>
-            <template #feed-content>
-              контент новости
+          <app-feed username="Петя" src="https://picsum.photos/id/832/300">
+            <template #repository>
+              <rep-content :data="repositoryData"/>
             </template>
           </app-feed>
         </li>
@@ -36,6 +36,7 @@ import { appHeader } from '../../components/app-header'
 import { appFeed } from '../../components/app-feed'
 import { headerTop } from '../../components/header-top'
 import { storyUserItem } from '../../components/storyUserItem'
+import { repContent } from '../../components/repContent'
 import stories from './data.json'
 
 export default {
@@ -44,11 +45,18 @@ export default {
     appHeader,
     appFeed,
     storyUserItem,
-    headerTop
+    headerTop,
+    repContent
   },
   data () {
     return {
-      stories
+      stories,
+      repositoryData: {
+        title: 'Vue.js',
+        description: 'JavaScript framework for building interactive web applications',
+        stars: 156,
+        forks: 41
+      }
     }
   }
 }

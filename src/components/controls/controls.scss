@@ -1,0 +1,47 @@
+.controls {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  background-color: #FAFBFC;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  color: #24292E;
+  padding: 0 10px;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+.icon-star {
+  width: 15px;
+}
+
+.icon-fork {
+  width: 12px;
+}
+
+.counter {
+  padding: 0 10px;
+  height: 100%;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  display: inline-flex;
+  align-items: center;
+  &_r {
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+  }
+  &_l {
+    border-top: none;
+    border-bottom: none;
+    border-right-width: 2px;
+  }
+}

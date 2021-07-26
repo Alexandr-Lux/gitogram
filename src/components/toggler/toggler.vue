@@ -1,6 +1,6 @@
 <template>
-  <button :class="['toggler__btn', { 'active': idOpened }]" @click="toggle">
-    <span class="toggler__text">{{isOpened ? 'Hide' : 'Show'}} issues</span>
+  <button :class="['toggler__btn', { 'active': isOpened }]" @click="changeVisability">
+    <span class="toggler__text">{{ isOpened ? 'Hide' : 'Show' }} issues</span>
     <span class="toggler__icon">
       <icon name='triangle'/>
     </span>
@@ -14,14 +14,16 @@ export default {
   components: {
     icon
   },
+  emits: ['onToggle'],
   data () {
     return {
-      idOpened: false
+      isOpened: false
     }
   },
   methods: {
-    toggle () {
+    changeVisability () {
       this.isOpened = !this.isOpened
+      this.$emit('onToggle', this.isOpened)
     }
   }
 }
