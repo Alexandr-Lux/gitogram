@@ -38,4 +38,4 @@ export default {
 }
 </script>
 
-<style src="./repContent.scss" lang="scss" scoped></style>
+<style src="./rep-content.scss" lang="scss" scoped></style>

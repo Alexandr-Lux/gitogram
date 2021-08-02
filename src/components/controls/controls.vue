@@ -18,11 +18,7 @@
 </template>
 
 <script>
-import { icon } from '../../icons'
 export default {
-  components: {
-    icon
-  },
   props: {
     stars: {
       type: Number,

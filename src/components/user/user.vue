@@ -1,7 +1,11 @@
 <template>
-  <div class="user">
-    <div class="avatar">
-      <img :src="src" alt="" />
+  <div :class="['user', getClasses()]">
+    <div class="user__photo">
+      <avatar
+        :src="avatar"
+        alt="Фото пользователя"
+        :type="type"
+      />
     </div>
     <div class="name">
       {{ username }}
@@ -10,15 +14,30 @@
 </template>
 
 <script>
+import { avatar } from '../avatar'
 export default {
+  components: {
+    avatar
+  },
   props: {
-    src: {
+    avatar: {
       type: String,
       required: true
     },
     username: {
       type: String,
       required: true
+    },
+    type: String
+  },
+  methods: {
+    getClasses () {
+      const classes = {
+        story: this.type === 'story',
+        feed: this.type === 'small'
+      }
+
+      return classes
     }
   }
 }

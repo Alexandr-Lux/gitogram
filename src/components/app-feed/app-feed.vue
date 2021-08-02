@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <user :username="username" :src="src" />
+    <user :username="username" :avatar="avatar" type="small" />
   </div>
   <div class="content">
     <slot name="repository" />
@@ -32,7 +32,7 @@ export default {
       type: String,
       required: true
     },
-    src: {
+    avatar: {
       type: String,
       required: true
     }

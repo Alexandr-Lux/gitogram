@@ -7,10 +7,11 @@
       <template #content>
         <ul class="stories">
           <li class="stories__item" v-for="story in stories" :key="story.id">
-            <story-user-item
+            <user
               :avatar="story.avatar"
               :username="story.username"
-            ></story-user-item>
+              type="story"
+            />
           </li>
         </ul>
       </template>
@@ -20,7 +21,7 @@
     <div class="container container_small">
       <ul class="feeds">
         <li class="feeds__item">
-          <app-feed username="Петя" src="https://picsum.photos/id/832/300">
+          <app-feed username="Петя" avatar="https://picsum.photos/300">
             <template #repository>
               <rep-content :data="repositoryData"/>
             </template>
@@ -29,14 +30,18 @@
       </ul>
     </div>
   </div>
+  <div class="app-slide">
+    <app-slide :data="slideContent" />
+  </div>
 </template>
 
 <script>
 import { appHeader } from '../../components/app-header'
 import { appFeed } from '../../components/app-feed'
+import { appSlide } from '../../components/app-slide'
 import { headerTop } from '../../components/header-top'
-import { storyUserItem } from '../../components/storyUserItem'
-import { repContent } from '../../components/repContent'
+import { user } from '../../components/user'
+import { repContent } from '../../components/rep-content'
 import stories from './data.json'
 
 export default {
@@ -44,7 +49,8 @@ export default {
   components: {
     appHeader,
     appFeed,
-    storyUserItem,
+    appSlide,
+    user,
     headerTop,
     repContent
   },
@@ -56,6 +62,18 @@ export default {
         description: 'JavaScript framework for building interactive web applications',
         stars: 156,
         forks: 41
+      },
+      slideContent: {
+        avatar: 'https://picsum.photos/300',
+        username: 'Вася',
+        src: 'https://picsum.photos/600/400',
+        alt: 'Картинка слайдера',
+        text: `
+          <p><b>The easiest</b> way to get .NET 6 Preview 4 is to install the maui-check dotnet tool from CLI and follow the instructions.</p>
+          <p>For running on Mac you'll currently use your favorite text editor and terminal to edit and run apps. We expect Visual Studio for Mac .NET 6 support to begin arriving mid-year.</p>
+          <p>In Preview 4 we enable push/pop navigation with NavigationPage. We added a concrete implementation of IWindow, and completed porting ContentPage from Xamarin.Forms</p>
+          <p>For running on Mac you'll currently use your favorite text editor and terminal to edit and run apps. We expect Visual Studio for Mac .NET 6 support to begin arriving mid-year.</p>
+        `
       }
     }
   }

@@ -1,17 +1,22 @@
-.user {
+.story {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  & .user__photo {
+    margin-bottom: 5px;
+  }
 }
 
-.avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 15px;
-}
-
-.name {
-  font-weight: 700;
+.feed {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  & .user__photo {
+    margin-right: 14px;
+  }
+  & .name {
+    font-weight: 700;
+  }
 }

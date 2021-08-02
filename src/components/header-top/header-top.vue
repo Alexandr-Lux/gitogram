@@ -1,13 +1,13 @@
 <template>
   <a href="#" class="header__logo">
-    <logo />
+    <icon name="logo" />
   </a>
   <nav class="header__nav">
     <button class="header__btn">
       <icon name="home" />
     </button>
     <button class="header__btn header__btn_avatar">
-      <div class="header__avatar"></div>
+      <avatar src="https://picsum.photos/300" type="userIcon" alt="Фото пользователя" class="header__avatar"></avatar>
     </button>
     <button class="header__btn">
       <icon name="logout" />
@@ -16,12 +16,10 @@
 </template>
 
 <script>
-import { logo } from '../logo'
-import { icon } from '../../icons'
+import { avatar } from '../avatar'
 export default {
   components: {
-    logo,
-    icon
+    avatar
   }
 }
 </script>

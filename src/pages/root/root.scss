@@ -11,12 +11,24 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
+  padding: 7px;
+  margin: 0 -15px;
 }
 
 .stories__item {
-  margin-right: 30px;
+  padding: 0 15px;
+  cursor: pointer;
 
   &:last-child {
     margin-right: 0;
   }
+}
+
+.app-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  background-color: #101010;
+  padding: 20px 0;
 }
