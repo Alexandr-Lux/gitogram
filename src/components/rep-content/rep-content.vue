@@ -1,12 +1,12 @@
 <template>
-  <h2 class="title">{{ data.title }}</h2>
+  <h2 class="title">{{ title }}</h2>
   <div class="info">
-    <p>
-      {{ data.description }}
+    <p v-if="description">
+      {{ description }}
     </p>
   </div>
   <div class="controls">
-    <controls :stars="data.stars" :forks="data.forks" />
+    <controls :stars="stars" :forks="forks" />
   </div>
 </template>
 
@@ -17,22 +17,20 @@ export default {
     controls
   },
   props: {
-    data: {
-      stars: {
-        type: Number,
-        required: true
-      },
-      forks: {
-        type: Number,
-        required: true
-      },
-      title: {
-        type: String,
-        required: true
-      },
-      description: {
-        type: String
-      }
+    stars: {
+      type: Number,
+      required: true
+    },
+    forks: {
+      type: Number,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String
     }
   }
 }

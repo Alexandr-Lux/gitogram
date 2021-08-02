@@ -14,10 +14,10 @@ const defaultView = () => {
     },
     template: `
       <rep-content
-        data.title="Vue.js"
-        data.description="JavaScript framework for building interactive web applications"
-        data.stars="156"
-        data.forks="41"
+        title="Название репозитория"
+        description="Описание репозитория"
+        stars=156
+        forks=41
       />`
   }
 }

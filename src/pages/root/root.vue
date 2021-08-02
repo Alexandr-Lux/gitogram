@@ -20,10 +20,10 @@
   <div class="app-feed">
     <div class="container container_small">
       <ul class="feeds">
-        <li class="feeds__item">
+        <li class="feeds__item" v-for="item in repositories" :key="item.id">
           <app-feed username="Петя" avatar="https://picsum.photos/300">
             <template #repository>
-              <rep-content :data="repositoryData"/>
+              <rep-content v-bind="getFeedData(item)"/>
             </template>
           </app-feed>
         </li>
@@ -43,6 +43,7 @@ import { headerTop } from '../../components/header-top'
 import { user } from '../../components/user'
 import { repContent } from '../../components/rep-content'
 import stories from './data.json'
+import * as api from '../../api'
 
 export default {
   name: 'root',
@@ -56,13 +57,8 @@ export default {
   },
   data () {
     return {
+      repositories: [],
       stories,
-      repositoryData: {
-        title: 'Vue.js',
-        description: 'JavaScript framework for building interactive web applications',
-        stars: 156,
-        forks: 41
-      },
       slideContent: {
         avatar: 'https://picsum.photos/300',
         username: 'Вася',
@@ -75,6 +71,24 @@ export default {
           <p>For running on Mac you'll currently use your favorite text editor and terminal to edit and run apps. We expect Visual Studio for Mac .NET 6 support to begin arriving mid-year.</p>
         `
       }
+    }
+  },
+  methods: {
+    getFeedData (item) {
+      return {
+        title: item.name,
+        description: item.description,
+        stars: item.stargazers_count,
+        forks: item.forks
+      }
+    }
+  },
+  async created () {
+    try {
+      const { data } = await api.trandings.getTrandings()
+      this.repositories = data.items
+    } catch (error) {
+      alert(error)
     }
   }
 }
