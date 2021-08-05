@@ -1,7 +1,7 @@
 import { headerTop } from './'
 
 export default {
-  title: 'Верх шапки',
+  title: 'Верх шапки (headerTop)',
   components: {
     headerTop
   }
@@ -13,7 +13,7 @@ const defaultView = () => {
       headerTop
     },
     template: `
-      <header-top />
+      <header-top theme="light"/>
     `
   }
 }

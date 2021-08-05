@@ -14,12 +14,16 @@
     </div>
     <div class="slide__body">
       <div class="slide__pic">
-        <img :src="data.src" :alt="data.src">
+        <img :src="data.src" :alt="data.alt">
       </div>
       <div class="slide__text" v-html="data.text"></div>
     </div>
     <div class="slide__footer">
-      <green-button />
+      <main-button green>
+        <template #default>
+          {{ btnText }}
+        </template>
+      </main-button>
     </div>
   </div>
 </template>
@@ -27,12 +31,17 @@
 <script>
 import { progressBar } from '../progress-bar'
 import { user } from '../user'
-import { greenButton } from '../green-button'
+import { mainButton } from '../main-button'
 export default {
+  data () {
+    return {
+      btnText: 'Follow'
+    }
+  },
   components: {
     user,
     progressBar,
-    greenButton
+    mainButton
   },
   props: {
     data: {

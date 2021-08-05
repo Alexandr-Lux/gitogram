@@ -2,14 +2,14 @@ import { appHeader } from './'
 import { headerTop } from '../header-top'
 
 export default {
-  title: 'Шапка',
+  title: 'Шапка (appHeader)',
   components: {
     appHeader,
     headerTop
   }
 } 
 
-const defaultView = () => {
+const mainView = () => {
   return {
     components: {
       appHeader,
@@ -17,14 +17,37 @@ const defaultView = () => {
     },
     template: `
       <app-header>
-        <header-top></header-top>
+        <template #top>
+          <header-top theme="light" />
+        </template>
       </app-header>
     `
   }
 }
 
-export { defaultView }
+const storyView = () => {
+  return {
+    components: {
+      appHeader,
+      headerTop
+    },
+    template: `
+      <app-header>
+        <template #top>
+          <header-top theme="dark" />
+        </template>
+      </app-header>
+    `
+  }
+}
 
-defaultView.story = {
-  name: 'Стандартный вид'
+export { mainView }
+export { storyView }
+
+mainView.story = {
+  name: 'Главный вид'
+}
+
+storyView.story = {
+  name: 'Стори вид'
 }

@@ -1,6 +1,12 @@
 .app-header {
   padding: 50px 0;
-  background: #FAFAFA;
+
+  &.light {
+    background-color: #fafafa;
+  }
+  &.dark {
+    background-color: #101010;
+  }
 }
 
 .app-feed {
@@ -29,6 +35,5 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
-  background-color: #101010;
   padding: 20px 0;
 }

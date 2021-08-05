@@ -17,11 +17,9 @@ export default {
       this.$emit('onFinish')
     }
   },
-  mounted () {
-    setTimeout(() => {
-      this.active = true
-    }, 0)
-
+  async mounted () {
+    await this.$nextTick()
+    this.active = true
     this.$refs.indicator.addEventListener('transitionend', this.emitOnFinish)
   },
   beforeUnmount () {

@@ -1,7 +1,7 @@
 import { user } from './'
 
 export default {
-  title: 'Пользователь',
+  title: 'Пользователь (user)',
   components: {
     user
   }

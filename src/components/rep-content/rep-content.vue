@@ -13,6 +13,7 @@
 <script>
 import { controls } from '../controls'
 export default {
+  name: 'repContent',
   components: {
     controls
   },

@@ -1,8 +1,8 @@
 import { appFeed } from './'
-import { repContent } from '../rep-content'
+import { repContent } from '../rep-content/index'
 
 export default {
-  title: 'Репозиторий',
+  title: 'Репозиторий (appFeed)',
   components: {
     appFeed,
     repContent
@@ -20,12 +20,14 @@ const defaultView = () => {
       username="Петя" 
       avatar="https://picsum.photos/300"
       >
-        <rep-content 
-          title="Название репозитория"
-          description="Описание репозитория"
-          stars=156
-          forks=41
-        />
+        <template #repository>
+          <rep-content 
+            title="Название репозитория"
+            description="Описание репозитория"
+            stars=156
+            forks=41
+          />
+        </template>
       </app-feed>`
   }
 }

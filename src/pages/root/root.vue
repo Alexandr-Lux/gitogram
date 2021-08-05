@@ -1,12 +1,12 @@
 <template>
-  <div class="app-header">
+  <div :class="['app-header', {light: display==='light', dark: display==='dark'}]">
     <app-header>
       <template #top>
-        <header-top />
+        <header-top :theme="display"/>
       </template>
       <template #content>
-        <ul class="stories">
-          <li class="stories__item" v-for="story in stories" :key="story.id">
+        <ul class="stories" v-if="display==='light'">
+          <li class="stories__item" v-for="story in stories" :key="story.id" @click="changeDisplay()">
             <user
               :avatar="story.avatar"
               :username="story.username"
@@ -14,10 +14,13 @@
             />
           </li>
         </ul>
+        <div class="app-slide" v-else>
+          <app-slide :data="slideContent" />
+        </div>
       </template>
     </app-header>
   </div>
-  <div class="app-feed">
+  <div class="app-feed" v-if="display==='light'">
     <div class="container container_small">
       <ul class="feeds">
         <li class="feeds__item" v-for="item in repositories" :key="item.id">
@@ -29,9 +32,6 @@
         </li>
       </ul>
     </div>
-  </div>
-  <div class="app-slide">
-    <app-slide :data="slideContent" />
   </div>
 </template>
 
@@ -59,6 +59,7 @@ export default {
     return {
       repositories: [],
       stories,
+      display: 'light',
       slideContent: {
         avatar: 'https://picsum.photos/300',
         username: 'Вася',
@@ -81,6 +82,10 @@ export default {
         stars: item.stargazers_count,
         forks: item.forks
       }
+    },
+    changeDisplay () {
+      this.display = 'dark'
+      this.status = true
     }
   },
   async created () {

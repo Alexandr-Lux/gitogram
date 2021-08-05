@@ -1,7 +1,7 @@
 import { comment } from './'
 
 export default {
-  title: 'Комментарий',
+  title: 'Комментарий (comment)',
   components: {
     comment
   }
@@ -13,7 +13,10 @@ const defaultView = () => {
       comment
     },
     template: `
-      <comment />
+      <comment 
+        username="Имя пользователя" 
+        text="Текст комментария"
+      />
     `
   }
 }

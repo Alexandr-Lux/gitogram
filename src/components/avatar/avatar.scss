@@ -22,4 +22,8 @@
 .story {
   box-shadow: 0 0 2px 3px #A6328D;
   margin: 7px;
+  transition: .1s;
+  &:hover {
+    box-shadow: none;
+  }
 }

@@ -2,7 +2,7 @@ import { controls } from './'
 import { icon } from '../icons'
 
 export default {
-  title: 'Кнопки',
+  title: 'Кнопки (controls)',
   components: {
     controls,
     icon
@@ -17,8 +17,8 @@ const defaultView = () => {
     },
     template: `
       <controls 
-        stars="S"
-        forks="F"
+        stars=156
+        forks=41
       >
         <icon name="star"></icon>
         <icon name="fork"></icon>

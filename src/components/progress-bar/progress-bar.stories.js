@@ -1,7 +1,7 @@
 import { progressBar } from './'
 
 export default {
-  title: 'Полоса прогресса',
+  title: 'Полоса прогресса (progressBar)',
   components: {
     progressBar
   },
@@ -18,10 +18,12 @@ const defaultView = (args) => {
       progressBar
     },
     data () {
-      return { args }
+      return {
+        args
+       }
     },
     template: `
-      <progress-bar @onFinish="args.onFinish" />`
+      <progress-bar @onFinish="args.onFinish"/>`
   }
 }
 

@@ -1,19 +1,24 @@
 import { toggler } from './'
+import { icon } from '../icons'
 
 export default {
-  title: 'Тоглер',
+  title: 'Тоглер (toggler)',
   components: {
-    toggler
+    toggler,
+    icon
   }
 } 
 
 const defaultView = () => {
   return {
     components: {
-      toggler
+      toggler,
+      icon
     },
     template: `
-      <toggler />
+      <toggler>
+        <icon name="triangle">
+      </toggler>
     `
   }
 }

@@ -1,7 +1,7 @@
 import { repContent } from '.'
 
 export default {
-  title: 'Содержимое репозитория',
+  title: 'Содержимое репозитория (repContent)',
   components: {
     repContent
   }
