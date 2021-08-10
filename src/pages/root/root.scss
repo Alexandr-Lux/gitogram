@@ -1,12 +1,5 @@
 .app-header {
   padding: 50px 0;
-
-  &.light {
-    background-color: #fafafa;
-  }
-  &.dark {
-    background-color: #101010;
-  }
 }
 
 .app-feed {
@@ -15,10 +8,14 @@
 
 .stories {
   display: flex;
-  justify-content: space-between;
-  overflow: hidden;
+  overflow: auto;
   padding: 7px;
   margin: 0 -15px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { 
+    width: 0px;
+  }
 }
 
 .stories__item {

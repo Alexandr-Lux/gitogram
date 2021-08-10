@@ -2,7 +2,7 @@ import { makeRequest } from '../requests'
 
 const addStartingZero = (value) => value < 10 ? `0${value}` : value
 
-export const getTrandings = (lang = 'javascript') => {
+export const getTrendings = (lang = 'javascript') => {
   const params = new URLSearchParams()
   const weekMS = 7 * 24 * 60 * 60 * 1000
   const weekAgo = new Date(Date.now() - weekMS)

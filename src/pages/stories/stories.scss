@@ -1,0 +1,24 @@
+.wrapper {
+  background-color: #101010;
+  height: 100vh;
+}
+
+.header {
+  padding: 48px 0;
+}
+
+.header__logo {
+  width: 175px;
+  color: #fff;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close {
+  color: #fff;
+  width: 23px;
+}

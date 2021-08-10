@@ -3,5 +3,5 @@ import routes from './routes'
 
 export default createRouter({
   history: createWebHashHistory(), // способ анализирования адресной строки
-  routes: []
+  routes
 })

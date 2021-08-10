@@ -1,0 +1,12 @@
+.stories-container {
+  position: relative;
+}
+
+.stories {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  margin-left: -188px;
+  transition: .4s;
+}

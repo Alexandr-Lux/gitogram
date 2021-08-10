@@ -98,6 +98,45 @@ const triangleView = () => {
   }
 }
 
+const arrowsView = () => {
+  return {
+    components: {
+      icon
+    },
+    template: `
+      <div style="width: 20px">
+        <icon name="arrow" />
+      </div>        
+    `
+  }
+}
+
+const closeView = () => {
+  return {
+    components: {
+      icon
+    },
+    template: `
+      <div style="width: 15px">
+        <icon name="close" />
+      </div>        
+    `
+  }
+}
+
+const spinnerView = () => {
+  return {
+    components: {
+      icon
+    },
+    template: `
+      <div style="width: 45px; color: #31AE54">
+        <icon name="spinner" />
+      </div>        
+    `
+  }
+}
+
 export { whiteLogoView }
 export { blackLogoView }
 export { forkView }
@@ -105,8 +144,9 @@ export { starView }
 export { homeView }
 export { logoutView }
 export { triangleView }
-
-
+export { arrowsView }
+export { closeView }
+export { spinnerView }
 
 whiteLogoView.story = {
   name: 'Логотип (белого цвета)'
@@ -135,3 +175,17 @@ logoutView.story = {
 triangleView.story = {
   name: 'Треугольник'
 }
+
+arrowsView.story = {
+  name: 'Стрелка'
+}
+
+closeView.story = {
+  name: 'Закрыть'
+}
+
+spinnerView.story = {
+  name: 'Спиннер'
+}
+
+

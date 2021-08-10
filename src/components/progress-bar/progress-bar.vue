@@ -1,15 +1,14 @@
 <template>
-  <div :class="{active}" class="line">
+  <div :class="{active: active && startProgress}" class="line">
     <div ref="indicator" class="indicator"></div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      active: false
-    }
+  props: {
+    active: Boolean,
+    startProgress: Boolean
   },
   emits: ['onFinish'],
   methods: {
@@ -17,9 +16,7 @@ export default {
       this.$emit('onFinish')
     }
   },
-  async mounted () {
-    await this.$nextTick()
-    this.active = true
+  mounted () {
     this.$refs.indicator.addEventListener('transitionend', this.emitOnFinish)
   },
   beforeUnmount () {

@@ -7,6 +7,7 @@
   &.active {
     .indicator {
       width: 100%;
+      transition: 5s linear;
     }
   }
 }
@@ -18,5 +19,4 @@
   left: 0;
   bottom: 0;
   width: 0;
-  transition: 5s linear;
 }

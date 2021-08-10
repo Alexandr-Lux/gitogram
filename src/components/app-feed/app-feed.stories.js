@@ -7,7 +7,7 @@ export default {
     appFeed,
     repContent
   }
-} 
+}
 
 const defaultView = () => {
   return {
@@ -17,7 +17,7 @@ const defaultView = () => {
     },
     template: `
       <app-feed 
-      username="Петя" 
+      username="User Name" 
       avatar="https://picsum.photos/300"
       >
         <template #repository>

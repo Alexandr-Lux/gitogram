@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="user">
     <user :username="username" :avatar="avatar" type="small" />
   </div>
   <div class="content">

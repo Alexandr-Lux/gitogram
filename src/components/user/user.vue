@@ -1,5 +1,5 @@
 <template>
-  <div :class="['user', getClasses()]">
+  <div :class="['user', getClasses()]" @click="$emit('thisReadme')">
     <div class="user__photo">
       <avatar
         :src="avatar"
@@ -19,6 +19,7 @@ export default {
   components: {
     avatar
   },
+  emits: ['thisReadme'],
   props: {
     avatar: {
       type: String,

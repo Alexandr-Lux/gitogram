@@ -1,9 +1,9 @@
 <template>
   <div class="header-top">
-    <a href="#" class="header__logo" :style="getColor()">
+    <button class="header__logo">
       <icon name="logo"/>
-    </a>
-    <nav class="header__nav" v-if="theme==='light'">
+    </button>
+    <nav class="header__nav">
       <button class="header__btn">
         <icon name="home" />
       </button>
@@ -20,20 +20,8 @@
 <script>
 import { avatar } from '../avatar'
 export default {
-  props: {
-    theme: String
-  },
   components: {
     avatar
-  },
-  methods: {
-    getColor () {
-      if (this.theme === 'light') {
-        return 'color: #000'
-      } else if (this.theme === 'dark') {
-        return 'color: #fff'
-      }
-    }
   }
 }
 </script>

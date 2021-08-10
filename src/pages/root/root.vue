@@ -1,36 +1,41 @@
 <template>
-  <div :class="['app-header', {light: display==='light', dark: display==='dark'}]">
-    <app-header>
-      <template #top>
-        <header-top :theme="display"/>
-      </template>
-      <template #content>
-        <ul class="stories" v-if="display==='light'">
-          <li class="stories__item" v-for="story in stories" :key="story.id" @click="changeDisplay()">
-            <user
-              :avatar="story.avatar"
-              :username="story.username"
-              type="story"
-            />
+  <div class="wrapper">
+    <div class="app-header">
+      <app-header>
+        <template #top>
+          <header-top />
+        </template>
+        <template #content>
+          <ul class="stories">
+            <li class="stories__item" v-for="item in data" :key="item.id">
+              <user
+                :avatar="item.owner.avatar_url"
+                :username="item.owner.login"
+                type="story"
+                @thisReadme="$router.push({
+                  name: 'stories',
+                  params: {
+                    initialSlide: item.id
+                  }
+                })"
+              />
+            </li>
+          </ul>
+        </template>
+      </app-header>
+    </div>
+    <div class="app-feed">
+      <div class="container container_small">
+        <ul class="feeds">
+          <li class="feeds__item" v-for="item in data" :key="item.id">
+            <app-feed :username="item.owner.login" :avatar="item.owner.avatar_url">
+              <template #repository>
+                <rep-content v-bind="getFeedData(item)"/>
+              </template>
+            </app-feed>
           </li>
         </ul>
-        <div class="app-slide" v-else>
-          <app-slide :data="slideContent" />
-        </div>
-      </template>
-    </app-header>
-  </div>
-  <div class="app-feed" v-if="display==='light'">
-    <div class="container container_small">
-      <ul class="feeds">
-        <li class="feeds__item" v-for="item in repositories" :key="item.id">
-          <app-feed username="Петя" avatar="https://picsum.photos/300">
-            <template #repository>
-              <rep-content v-bind="getFeedData(item)"/>
-            </template>
-          </app-feed>
-        </li>
-      </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -38,43 +43,25 @@
 <script>
 import { appHeader } from '../../components/app-header'
 import { appFeed } from '../../components/app-feed'
-import { appSlide } from '../../components/app-slide'
 import { headerTop } from '../../components/header-top'
 import { user } from '../../components/user'
 import { repContent } from '../../components/rep-content'
-import stories from './data.json'
-import * as api from '../../api'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'root',
   components: {
     appHeader,
     appFeed,
-    appSlide,
     user,
     headerTop,
     repContent
   },
-  data () {
-    return {
-      repositories: [],
-      stories,
-      display: 'light',
-      slideContent: {
-        avatar: 'https://picsum.photos/300',
-        username: 'Вася',
-        src: 'https://picsum.photos/600/400',
-        alt: 'Картинка слайдера',
-        text: `
-          <p><b>The easiest</b> way to get .NET 6 Preview 4 is to install the maui-check dotnet tool from CLI and follow the instructions.</p>
-          <p>For running on Mac you'll currently use your favorite text editor and terminal to edit and run apps. We expect Visual Studio for Mac .NET 6 support to begin arriving mid-year.</p>
-          <p>In Preview 4 we enable push/pop navigation with NavigationPage. We added a concrete implementation of IWindow, and completed porting ContentPage from Xamarin.Forms</p>
-          <p>For running on Mac you'll currently use your favorite text editor and terminal to edit and run apps. We expect Visual Studio for Mac .NET 6 support to begin arriving mid-year.</p>
-        `
-      }
-    }
+  computed: {
+    ...mapState(['data'])
   },
   methods: {
+    ...mapActions(['getData']),
     getFeedData (item) {
       return {
         title: item.name,
@@ -82,19 +69,10 @@ export default {
         stars: item.stargazers_count,
         forks: item.forks
       }
-    },
-    changeDisplay () {
-      this.display = 'dark'
-      this.status = true
     }
   },
-  async created () {
-    try {
-      const { data } = await api.trandings.getTrandings()
-      this.repositories = data.items
-    } catch (error) {
-      alert(error)
-    }
+  mounted () {
+    this.getData()
   }
 }
 </script>
