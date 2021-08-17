@@ -13,6 +13,7 @@
             @clickNext="handleSlide(slideIndex + 1)"
             @onProgressFinish="handleSlide(slideIndex + 1)"
             @onFollow="starRepo(item.id)"
+            @onUnFollow="unStarRepo(item.id)"
           />
         </li>
       </ul>
@@ -56,7 +57,8 @@ export default {
     ...mapActions({
       getData: 'trendings/getData',
       getReadme: 'trendings/getReadme',
-      starRepo: 'trendings/starRepo'
+      starRepo: 'trendings/starRepo',
+      unStarRepo: 'trendings/unStarRepo'
     }),
     getStoryData (obj) {
       return {

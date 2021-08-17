@@ -24,14 +24,10 @@
       </div>
       <div class="slide__footer">
         <main-button
-          :theme="data.following.status ? 'grey' : 'green'"
-          @click="$emit(data.following.status ? 'onUnFollow' : 'onFollow', data.id)"
-        >
+          :theme="data.following ? 'grey' : 'green'"
+          @click="$emit(data.following ? 'onUnFollow' : 'onFollow', data.id)">
           <template #default>
-            <span v-if="data.following.loading">
-              <spinner />
-            </span>
-            <span v-else>{{data.following.status ? 'Unfollow' : 'Follow'}}</span>
+            <span>{{data.following ? 'Unfollow' : 'Follow'}}</span>
           </template>
         </main-button>
       </div>

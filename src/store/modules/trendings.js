@@ -11,18 +11,14 @@ export default {
   mutations: {
     RENDER_TRENDINGS (state, payload) {
       state.data = payload.map(item => {
-        item.following = {
-          status: false,
-          loading: false,
-          error: ''
-        }
+        item.following = false
         return item
       })
     },
     RENDER_README (state, payload) {
       state.data = state.data.map(repo => {
         if (payload.id === repo.id) {
-          repo.readme = payload.content
+          repo.readme = payload.readme
         }
         return repo
       })
@@ -37,11 +33,10 @@ export default {
     },
     SET_FOLLOWING: (state, payload) => {
       state.data = state.data.map((repo) => {
-        const editedRepo = repo
-        if (payload.id === editedRepo.id) {
-          editedRepo.following = payload.following
+        if (payload.id === repo.id) {
+          repo.following = payload.following
         }
-        return editedRepo
+        return repo
       })
     }
   },
@@ -60,7 +55,7 @@ export default {
 
       try {
         const { data } = await api.readme.getReadme({ owner, repo })
-        commit('RENDER_README', { id, content: data })
+        commit('RENDER_README', { id, readme: data })
       } catch (error) {
         console.log(error)
       }
@@ -78,6 +73,15 @@ export default {
       try {
         await api.starred.starRepo({ owner: owner.login, repo })
         commit('SET_FOLLOWING', { id, following: true })
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async unStarRepo ({ commit, getters }, id) {
+      const { name: repo, owner } = getters.getRepoById(id)
+      try {
+        await api.starred.unStarRepo({ owner: owner.login, repo })
+        commit('SET_FOLLOWING', { id, following: false })
       } catch (e) {
         console.log(e)
       }
