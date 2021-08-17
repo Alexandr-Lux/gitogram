@@ -2,6 +2,7 @@
 
 body, html {
   height: 100%;
+  box-sizing: border-box;
 }
 
 body {
@@ -58,6 +59,7 @@ button {
   max-width: 1230px;
   margin: 0 auto;
   padding: 0 15px;
+  width: 100%;
   &_small {
     max-width: 1010px;
   }

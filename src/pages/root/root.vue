@@ -3,14 +3,14 @@
     <div class="app-header">
       <app-header>
         <template #top>
-          <header-top />
+          <header-top :userAvatar="user.avatar_url"/>
         </template>
         <template #content>
           <ul class="stories">
             <li class="stories__item" v-for="item in data" :key="item.id">
               <user
-                :avatar="item.owner.avatar_url"
-                :username="item.owner.login"
+                :avatar="item.owner?.avatar_url"
+                :username="item.owner?.login"
                 type="story"
                 @thisReadme="$router.push({
                   name: 'stories',
@@ -28,7 +28,16 @@
       <div class="container container_small">
         <ul class="feeds">
           <li class="feeds__item" v-for="item in data" :key="item.id">
-            <app-feed :username="item.owner.login" :avatar="item.owner.avatar_url">
+            <app-feed
+              :username="item.owner.login"
+              :avatar="item.owner.avatar_url"
+              :issues="item.issues ? item.issues : []"
+              :repDate="item.created_at"
+              @loadIssues="getIssues({
+                id: item.id,
+                owner: item.owner.login,
+                repo: item.name })"
+            >
               <template #repository>
                 <rep-content v-bind="getFeedData(item)"/>
               </template>
@@ -41,12 +50,13 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 import { appHeader } from '../../components/app-header'
 import { appFeed } from '../../components/app-feed'
 import { headerTop } from '../../components/header-top'
 import { user } from '../../components/user'
 import { repContent } from '../../components/rep-content'
-import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'root',
@@ -58,10 +68,17 @@ export default {
     repContent
   },
   computed: {
-    ...mapState(['data'])
+    ...mapState({
+      data: state => state.trendings.data,
+      user: state => state.auth.user
+    })
   },
   methods: {
-    ...mapActions(['getData']),
+    ...mapActions({
+      getData: 'trendings/getData',
+      getIssues: 'trendings/getIssues',
+      getUser: 'auth/getUser'
+    }),
     getFeedData (item) {
       return {
         title: item.name,
@@ -71,8 +88,13 @@ export default {
       }
     }
   },
-  mounted () {
-    this.getData()
+  async created () {
+    if (this.user === null) {
+      await this.getUser()
+    }
+  },
+  async mounted () {
+    await this.getData()
   }
 }
 </script>

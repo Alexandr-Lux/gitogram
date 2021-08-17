@@ -1,5 +1,5 @@
 <template>
-  <button :class="['btn', { green, grey }]">
+  <button :class="['btn', `${theme}`]">
     <slot />
   </button>
 </template>
@@ -7,8 +7,7 @@
 <script>
 export default {
   props: {
-    green: Boolean,
-    grey: Boolean
+    theme: String
   }
 }
 </script>

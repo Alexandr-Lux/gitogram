@@ -9,11 +9,14 @@
     <toggler @on-toggle="toggle" />
     <div class="comments" v-if="shown">
       <ul class="comments__list">
-        <li class="comments__item" v-for="item in 3" :key="item">
-          <comment username="Vasya Pupkin" text="Повседневная практика показывает, что реализация намеченных плановых заданий в значительной степени обуславливает создание модели развития." />
+        <li class="comments__item" v-for="issue in issues" :key="issue.id">
+          <comment :issueAuthor="issue.user.login" :issueText="issue.body" />
         </li>
       </ul>
     </div>
+  </div>
+  <div class="rep-date">
+    {{formatDate}}
   </div>
 </template>
 
@@ -21,6 +24,8 @@
 import { user } from '../user'
 import { toggler } from '../toggler'
 import { comment } from '../comment'
+import { mounth } from '../../helpers/mounth'
+
 export default {
   components: {
     user,
@@ -35,6 +40,14 @@ export default {
     avatar: {
       type: String,
       required: true
+    },
+    issues: {
+      type: Array,
+      required: true
+    },
+    repDate: {
+      type: String,
+      required: true
     }
   },
   data () {
@@ -42,9 +55,21 @@ export default {
       shown: false
     }
   },
+  emits: ['loadIssues'],
   methods: {
     toggle (isOpened) {
       this.shown = isOpened
+
+      if (isOpened && this.issues.length === 0) {
+        this.$emit('loadIssues')
+      }
+    }
+  },
+  computed: {
+    formatDate () {
+      const date = this.repDate.split(/-|T/).splice(0, 3).reverse()
+      const formatDate = `${date[0]} ${mounth[date[1] - 1]}`
+      return formatDate
     }
   }
 }

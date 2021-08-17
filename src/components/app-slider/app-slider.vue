@@ -12,6 +12,7 @@
             @clickPrev="handleSlide(slideIndex - 1)"
             @clickNext="handleSlide(slideIndex + 1)"
             @onProgressFinish="handleSlide(slideIndex + 1)"
+            @onFollow="starRepo(item.id)"
           />
         </li>
       </ul>
@@ -41,7 +42,9 @@ export default {
   },
   emits: ['noMoreSlides'],
   computed: {
-    ...mapState(['data']),
+    ...mapState({
+      data: state => state.trendings.data
+    }),
     activeBtns () {
       if (this.navBtns === false) return []
       if (this.slideIndex === 0) return ['next']
@@ -50,13 +53,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['getData', 'getReadme']),
+    ...mapActions({
+      getData: 'trendings/getData',
+      getReadme: 'trendings/getReadme',
+      starRepo: 'trendings/starRepo'
+    }),
     getStoryData (obj) {
       return {
         id: obj.id,
         avatar: obj.owner?.avatar_url,
         username: obj.owner?.login,
-        content: obj.readme
+        content: obj.readme,
+        following: obj.following
       }
     },
     async getActiveReadme () {

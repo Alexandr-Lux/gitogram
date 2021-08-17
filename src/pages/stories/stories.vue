@@ -3,10 +3,10 @@
     <header class="header">
       <div class="container">
         <div class="header-content">
-          <button class="header__logo" @click="$router.push('/')">
+          <button class="header__logo" @click="$router.push({ name: 'root' })">
             <icon name="logo" />
           </button>
-          <button class="close" @click="$router.push('/')">
+          <button class="close" @click="$router.push({ name: 'root' })">
             <icon name="close" />
           </button>
         </div>

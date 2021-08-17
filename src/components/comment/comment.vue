@@ -1,8 +1,8 @@
 <template>
   <div class="comment">
     <p>
-      <span class="username">{{username}}</span>
-      {{ text }}
+      <span class="username">{{issueAuthor}}</span>
+      {{ issueText }}
     </p>
   </div>
 </template>
@@ -10,11 +10,11 @@
 <script>
 export default {
   props: {
-    username: {
+    issueAuthor: {
       type: String,
       required: true
     },
-    text: {
+    issueText: {
       type: String,
       required: true
     }
