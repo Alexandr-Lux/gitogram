@@ -9,14 +9,12 @@
           <div class="auth-promo">
             More than just one repository. This is our digital world.
           </div>
-          <div class="auth-button">
-            <button @click="checkUser">
-              <main-button theme="green">
-                <span class="btn-text">Authorize with github</span>
-                <span><icon name="github" /></span>
-              </main-button>
-            </button>
-          </div>
+          <button @click="checkUser" class="auth-button">
+            <main-button theme="green">
+              <span class="btn-text">Authorize with github</span>
+              <span><icon name="github" /></span>
+            </main-button>
+          </button>
         </div>
       </div>
     </div>

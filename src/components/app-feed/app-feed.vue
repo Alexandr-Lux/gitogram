@@ -10,7 +10,7 @@
     <div class="comments" v-if="shown">
       <ul class="comments__list">
         <li class="comments__item" v-for="issue in issues" :key="issue.id">
-          <comment :issueAuthor="issue.user.login" :issueText="issue.body" />
+          <comment :issue="issue" />
         </li>
       </ul>
     </div>
@@ -24,7 +24,7 @@
 import { user } from '../user'
 import { toggler } from '../toggler'
 import { comment } from '../comment'
-import { mounth } from '../../helpers/mounth'
+import { months } from '../../helpers/months'
 
 export default {
   components: {
@@ -68,7 +68,7 @@ export default {
   computed: {
     formatDate () {
       const date = this.repDate.split(/-|T/).splice(0, 3).reverse()
-      const formatDate = `${date[0]} ${mounth[date[1] - 1]}`
+      const formatDate = `${date[0]} ${months[date[1] - 1]}`
       return formatDate
     }
   }

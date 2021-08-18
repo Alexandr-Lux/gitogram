@@ -6,7 +6,7 @@ export const getCode = () => {
   const params = new URLSearchParams()
 
   params.append('client_id', process.env.VUE_APP_CLIENT_ID)
-  params.append('scope', 'repo:status read:user')
+  params.append('scope', 'repo,user')
 
   window.location.href = `${githubApi}?${params}`
 }

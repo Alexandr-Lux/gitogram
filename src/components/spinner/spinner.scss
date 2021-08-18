@@ -4,6 +4,11 @@
   width: 44px;
   height: 44px;
   animation: rotate 1.3s linear infinite;
+  &.btn {
+    color: #fff;
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @keyframes rotate {

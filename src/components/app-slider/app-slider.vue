@@ -2,7 +2,7 @@
   <div class="slider">
     <div class="stories-container">
       <ul class="stories" ref="slider">
-        <li class="stories__item" ref="item" v-for="(item, index) in data" :key="item.id">
+        <li class="stories__item" ref="item" v-for="(item, index) in trendings" :key="item.id">
           <slide-item
             :data="getStoryData(item)"
             :active="slideIndex === index"
@@ -44,12 +44,12 @@ export default {
   emits: ['noMoreSlides'],
   computed: {
     ...mapState({
-      data: state => state.trendings.data
+      trendings: state => state.trendings.data
     }),
     activeBtns () {
       if (this.navBtns === false) return []
       if (this.slideIndex === 0) return ['next']
-      if (this.slideIndex === this.data.length - 1) return ['prev']
+      if (this.slideIndex === this.trendings.length - 1) return ['prev']
       return ['prev', 'next']
     }
   },
@@ -70,7 +70,7 @@ export default {
       }
     },
     async getActiveReadme () {
-      const { id, owner, name } = this.data[this.slideIndex]
+      const { id, owner, name } = this.trendings[this.slideIndex]
       await this.getReadme({
         id,
         owner: owner.login,
@@ -102,7 +102,7 @@ export default {
       }
     },
     async handleSlide (indexOfSlide) {
-      if (indexOfSlide < this.data.length) {
+      if (indexOfSlide < this.trendings.length) {
         this.goToSlide(indexOfSlide)
         await this.loadReadme()
       } else {
@@ -112,10 +112,12 @@ export default {
   },
   async mounted () {
     if (this.initialSlide) {
-      const index = this.data.findIndex(item => item.id === this.initialSlide)
+      const index = this.trendings.findIndex(item => item.id === this.initialSlide)
       await this.handleSlide(index)
     }
-    await this.getData()
+    if (this.trendings.length === 0) {
+      await this.getData()
+    }
     await this.loadReadme()
   }
 }

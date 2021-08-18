@@ -1,4 +1,5 @@
 import * as api from '../../api'
+import { noReadmeTemplate } from '../../helpers/noReadme'
 
 export default {
   namespaced: true,
@@ -11,32 +12,32 @@ export default {
   mutations: {
     RENDER_TRENDINGS (state, payload) {
       state.data = payload.map(item => {
-        item.following = false
+        item.following = { status: false, loading: false, theme: 'green' }
         return item
       })
     },
     RENDER_README (state, payload) {
-      state.data = state.data.map(repo => {
-        if (payload.id === repo.id) {
-          repo.readme = payload.readme
+      state.data = state.data.map(item => {
+        if (payload.id === item.id) {
+          item.readme = payload.readme
         }
-        return repo
+        return item
       })
     },
     RENDER_ISSUES (state, payload) {
-      state.data = state.data.map(repo => {
-        if (payload.id === repo.id) {
-          repo.issues = payload.issues
+      state.data = state.data.map(item => {
+        if (payload.id === item.id) {
+          item.issues = payload.issues
         }
-        return repo
+        return item
       })
     },
     SET_FOLLOWING: (state, payload) => {
-      state.data = state.data.map((repo) => {
-        if (payload.id === repo.id) {
-          repo.following = payload.following
+      state.data = state.data.map(item => {
+        if (payload.id === item.id) {
+          item.following = payload.following
         }
-        return repo
+        return item
       })
     }
   },
@@ -57,31 +58,39 @@ export default {
         const { data } = await api.readme.getReadme({ owner, repo })
         commit('RENDER_README', { id, readme: data })
       } catch (error) {
-        console.log(error)
+        if (error.response.status === 404) {
+          commit('RENDER_README', { id, readme: noReadmeTemplate })
+        }
       }
     },
     async getIssues ({ commit }, { id, owner, repo }) {
       try {
         const { data } = await api.issues.getIssues({ owner, repo })
-        commit('RENDER_ISSUES', { id, issues: data })
+        if (data.length !== 0) {
+          commit('RENDER_ISSUES', { id, issues: data })
+        } else {
+          commit('RENDER_ISSUES', { id, issues: [{ no_issue: 'Issues has not yet been written for this repository' }] })
+        }
       } catch (error) {
         console.log(error)
       }
     },
     async starRepo ({ commit, getters }, id) {
+      commit('SET_FOLLOWING', { id, following: { status: false, loading: true, theme: 'grey' } })
       const { name: repo, owner } = getters.getRepoById(id)
       try {
         await api.starred.starRepo({ owner: owner.login, repo })
-        commit('SET_FOLLOWING', { id, following: true })
+        commit('SET_FOLLOWING', { id, following: { status: true, loading: false, theme: 'grey' } })
       } catch (e) {
         console.log(e)
       }
     },
     async unStarRepo ({ commit, getters }, id) {
+      commit('SET_FOLLOWING', { id, following: { status: true, loading: true, theme: 'green' } })
       const { name: repo, owner } = getters.getRepoById(id)
       try {
         await api.starred.unStarRepo({ owner: owner.login, repo })
-        commit('SET_FOLLOWING', { id, following: false })
+        commit('SET_FOLLOWING', { id, following: { status: false, loading: false, theme: 'green' } })
       } catch (e) {
         console.log(e)
       }

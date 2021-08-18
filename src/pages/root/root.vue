@@ -3,11 +3,11 @@
     <div class="app-header">
       <app-header>
         <template #top>
-          <header-top :userAvatar="user.avatar_url"/>
+          <header-top v-if="user" :userAvatar="user.avatar_url"/>
         </template>
         <template #content>
           <ul class="stories">
-            <li class="stories__item" v-for="item in data" :key="item.id">
+            <li class="stories__item" v-for="item in trendings" :key="item.id">
               <user
                 :avatar="item.owner?.avatar_url"
                 :username="item.owner?.login"
@@ -27,7 +27,7 @@
     <div class="app-feed">
       <div class="container container_small">
         <ul class="feeds">
-          <li class="feeds__item" v-for="item in data" :key="item.id">
+          <li class="feeds__item" v-for="item in trendings" :key="item.id">
             <app-feed
               :username="item.owner.login"
               :avatar="item.owner.avatar_url"
@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ...mapState({
-      data: state => state.trendings.data,
+      trendings: state => state.trendings.data,
       user: state => state.auth.user
     })
   },
@@ -94,7 +94,9 @@ export default {
     }
   },
   async mounted () {
-    await this.getData()
+    if (this.trendings.length === 0) {
+      await this.getData()
+    }
   }
 }
 </script>

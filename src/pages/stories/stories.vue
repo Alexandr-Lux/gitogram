@@ -13,7 +13,9 @@
       </div>
     </header>
     <div class="app-slider">
-      <app-slider :initialSlide="Number($route.params.initialSlide)" @noMoreSlides="$router.push('/')"/>
+      <app-slider
+        :initialSlide="Number($route.params.initialSlide)"
+        @noMoreSlides="$router.push({ name: 'root' })"/>
     </div>
   </div>
 </template>
