@@ -57,6 +57,7 @@ import { mainButton } from '../main-button'
 import { icon } from '../icons'
 import { placeholder } from '../placeholder'
 import { spinner } from '../spinner'
+
 export default {
   components: {
     user,

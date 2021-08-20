@@ -14,7 +14,9 @@ export default {
       const classes = {
         story: this.type === 'story',
         small: this.type === 'small',
-        userIcon: this.type === 'userIcon'
+        userIcon: this.type === 'userIcon',
+        profile: this.type === 'profile',
+        following: this.type === 'following'
       }
 
       return classes

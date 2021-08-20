@@ -24,14 +24,6 @@ export default {
         return item
       })
     },
-    RENDER_ISSUES (state, payload) {
-      state.data = state.data.map(item => {
-        if (payload.id === item.id) {
-          item.issues = payload.issues
-        }
-        return item
-      })
-    },
     SET_FOLLOWING: (state, payload) => {
       state.data = state.data.map(item => {
         if (payload.id === item.id) {
@@ -42,12 +34,12 @@ export default {
     }
   },
   actions: {
-    async getData ({ commit }) {
+    async getTrendings ({ commit }) {
       try {
         const { data } = await api.trendings.getTrendings()
         commit('RENDER_TRENDINGS', data.items)
       } catch (error) {
-        alert(error)
+        console.log(error)
       }
     },
     async getReadme ({ commit, getters }, { id, owner, repo }) {
@@ -61,18 +53,6 @@ export default {
         if (error.response.status === 404) {
           commit('RENDER_README', { id, readme: noReadmeTemplate })
         }
-      }
-    },
-    async getIssues ({ commit }, { id, owner, repo }) {
-      try {
-        const { data } = await api.issues.getIssues({ owner, repo })
-        if (data.length !== 0) {
-          commit('RENDER_ISSUES', { id, issues: data })
-        } else {
-          commit('RENDER_ISSUES', { id, issues: [{ no_issue: 'Issues has not yet been written for this repository' }] })
-        }
-      } catch (error) {
-        console.log(error)
       }
     },
     async starRepo ({ commit, getters }, id) {

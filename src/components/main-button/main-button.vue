@@ -1,5 +1,5 @@
 <template>
-  <button :class="['btn', `${theme}`]">
+  <button :class="['btn', `${theme}`, `${size}`]">
     <slot />
   </button>
 </template>
@@ -7,7 +7,11 @@
 <script>
 export default {
   props: {
-    theme: String
+    theme: {
+      type: String,
+      required: true
+    },
+    size: String
   }
 }
 </script>

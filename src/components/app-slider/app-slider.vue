@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getData: 'trendings/getData',
+      getTrendings: 'trendings/getTrendings',
       getReadme: 'trendings/getReadme',
       starRepo: 'trendings/starRepo',
       unStarRepo: 'trendings/unStarRepo'
@@ -116,7 +116,7 @@ export default {
       await this.handleSlide(index)
     }
     if (this.trendings.length === 0) {
-      await this.getData()
+      await this.getTrendings()
     }
     await this.loadReadme()
   }

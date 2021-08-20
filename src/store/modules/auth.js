@@ -7,6 +7,7 @@ export default {
   },
   mutations: {
     SET_USER (state, payload) {
+      payload.isFollowing = false
       state.user = payload
     }
   },

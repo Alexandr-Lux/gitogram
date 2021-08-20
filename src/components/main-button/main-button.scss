@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #31AE54;
   color: #fff;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -20,5 +19,8 @@
     &:hover {
       background-color: #7c7c7c
     }
+  }
+  &.small {
+    width: 115px;
   }
 }

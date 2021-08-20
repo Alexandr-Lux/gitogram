@@ -7,8 +7,8 @@
       <button class="header__btn" @click="$router.push({ name: 'root' })">
         <icon name="home" />
       </button>
-      <button class="header__btn header__btn_avatar">
-        <avatar :src="userAvatar" type="userIcon" class="header__avatar"></avatar>
+      <button class="header__btn header__btn_avatar" @click="$router.push({ name: 'repos' })">
+        <avatar :src="userAvatar" type="userIcon"></avatar>
       </button>
       <button class="header__btn">
         <icon name="logout" @click="exit" />

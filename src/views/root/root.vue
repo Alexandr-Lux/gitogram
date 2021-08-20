@@ -27,7 +27,7 @@
     <div class="app-feed">
       <div class="container container_small">
         <ul class="feeds">
-          <li class="feeds__item" v-for="item in trendings" :key="item.id">
+          <li class="feeds__item" v-for="item in starred" :key="item.id">
             <app-feed
               :username="item.owner.login"
               :avatar="item.owner.avatar_url"
@@ -70,14 +70,16 @@ export default {
   computed: {
     ...mapState({
       trendings: state => state.trendings.data,
-      user: state => state.auth.user
+      user: state => state.auth.user,
+      starred: state => state.starred.starred
     })
   },
   methods: {
     ...mapActions({
-      getData: 'trendings/getData',
-      getIssues: 'trendings/getIssues',
-      getUser: 'auth/getUser'
+      getTrendings: 'trendings/getTrendings',
+      getIssues: 'starred/getIssues',
+      getUser: 'auth/getUser',
+      getStarred: 'starred/getStarred'
     }),
     getFeedData (item) {
       return {
@@ -95,7 +97,10 @@ export default {
   },
   async mounted () {
     if (this.trendings.length === 0) {
-      await this.getData()
+      await this.getTrendings()
+    }
+    if (this.starred === null) {
+      await this.getStarred()
     }
   }
 }

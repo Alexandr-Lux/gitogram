@@ -1,6 +1,6 @@
 import '../src/app.scss';
-import '../src/pages/root/root.scss';
-import '../src/pages/stories/stories.scss';
+import '../src/views/root/root.scss';
+import '../src/views/stories/stories.scss';
 import { icon } from "../src/components/icons";
 import { app } from '@storybook/vue3';
 

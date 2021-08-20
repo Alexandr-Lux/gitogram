@@ -1,0 +1,19 @@
+.user {
+  display: flex;
+}
+
+.title {
+  font-size: 26px;
+  margin-bottom: 30px;
+}
+
+.my-profile {
+  flex: 1;
+  border-right: 1px solid #d3d3d3;
+  padding: 40px 30px 0 0;
+}
+
+.content {
+  flex: 2;
+  padding: 40px 0 70px 70px;
+}

@@ -1,12 +1,14 @@
 <template>
-  <h2 class="title">{{ title }}</h2>
-  <div class="info">
-    <p v-if="description">
-      {{ description }}
-    </p>
-  </div>
-  <div class="controls">
-    <controls :stars="stars" :forks="forks" />
+  <div class="rep-content">
+    <h2 class="title">{{ title }}</h2>
+    <div class="info">
+      <p v-if="description">
+        {{ description }}
+      </p>
+    </div>
+    <div class="controls">
+      <controls :stars="stars" :forks="forks" />
+    </div>
   </div>
 </template>
 

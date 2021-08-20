@@ -9,3 +9,7 @@ export const unStarRepo = ({ repo, owner }) => makeRequest({
   url: `/user/starred/${owner}/${repo}`,
   method: 'delete'
 })
+
+export const getStarred = () => makeRequest({
+  url: '/user/starred'
+})
