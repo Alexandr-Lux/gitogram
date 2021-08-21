@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="profile">
     <avatar :src="avatar" type="profile" class="avatar" />
     <div class="info">
       <div class="login">{{ login }}</div>

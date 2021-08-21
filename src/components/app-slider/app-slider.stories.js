@@ -1,26 +1,16 @@
 import { appSlider } from './'
-import { slideItem } from '../slide-item'
 
 export default {
   title: 'Слайдер (appSlider)',
   components: {
-    appSlider,
-    slideItem
-  }
-} 
+    appSlider
+  },
+}
 
 const defaultView = () => {
   return {
     components: {
-      appSlider,
-      slideItem
-    },
-    data () {
-      return {
-        state: {
-          data: []
-        }
-      }
+      appSlider
     },
     template: `
       <app-slider initialSlide="3"></app-slider>

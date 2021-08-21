@@ -40,7 +40,7 @@ const noIssuesView = () => {
       return {
         issues: [
           {
-            no_issue: 'There is no issues yet'
+            no_issue: 'Issues has not yet been written for this repository',
           }
         ]
       }

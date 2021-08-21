@@ -14,6 +14,11 @@ const activeView = () => {
         sliderContent: {
           avatar: 'https://picsum.photos/300',
           username: 'User Name',
+          following: {
+            status: false,
+            loading: false,
+            theme: 'green'
+          },
           content: `
             <img src="https://picsum.photos/600/400">
             <p><b>The easiest</b> way to get .NET 6 Preview 4 is to install the maui-check dotnet tool from CLI and follow the instructions.</p>
@@ -45,7 +50,12 @@ const placeholderView = () => {
       return {
         sliderContent: {
           avatar: 'https://picsum.photos/300',
-          username: 'User Name'
+          username: 'User Name',
+          following: {
+            status: false,
+            loading: false,
+            theme: 'green'
+          }
         }
       }
     },
@@ -71,6 +81,11 @@ const loadingView = () => {
         sliderContent: {
           avatar: 'https://picsum.photos/300',
           username: 'User Name',
+          following: {
+            status: false,
+            loading: false,
+            theme: 'green'
+          },
           content: `
             <img src="https://picsum.photos/600/400">
             <p><b>The easiest</b> way to get .NET 6 Preview 4 is to install the maui-check dotnet tool from CLI and follow the instructions.</p>

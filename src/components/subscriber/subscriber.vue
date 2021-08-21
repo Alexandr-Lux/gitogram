@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="subscriber">
     <div class="info">
       <avatar :src="avatar" type="following" class="user-avatar" />
       <div class="rep-data">

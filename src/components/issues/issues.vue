@@ -6,7 +6,7 @@
     <ul class="comments__list">
       <li class="comments__item" v-for="issue in issues" :key="issue.id">
         <comment
-          :login="issue.user?.login"
+          :login="issue.user.login"
           :body="issue.body"
           :empty="issue.no_issue"
         />

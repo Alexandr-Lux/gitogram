@@ -13,7 +13,7 @@ const greenView = () => {
       mainButton
     },
     template: `
-      <main-button green>Содержимое кнопки</main-button>
+      <main-button theme="green">Содержимое кнопки</main-button>
       `
   }
 }
@@ -24,13 +24,25 @@ const greyView = () => {
       mainButton
     },
     template: `
-    <main-button grey>Содержимое кнопки</main-button>
+    <main-button theme="grey">Содержимое кнопки</main-button>
+      `
+  }
+}
+
+const smallView = () => {
+  return {
+    components: {
+      mainButton
+    },
+    template: `
+      <main-button theme="green" size="small">Содержимое кнопки</main-button>
       `
   }
 }
 
 export { greenView }
 export { greyView }
+export { smallView }
 
 greenView.story = {
   name: 'Зеленая кнопка'
@@ -38,4 +50,8 @@ greenView.story = {
 
 greyView.story = {
   name: 'Серая кнопка'
+}
+
+smallView.story = {
+  name: 'Маленькая кнопка'
 }
