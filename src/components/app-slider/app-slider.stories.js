@@ -15,6 +15,13 @@ const defaultView = () => {
       appSlider,
       slideItem
     },
+    data () {
+      return {
+        state: {
+          data: []
+        }
+      }
+    },
     template: `
       <app-slider initialSlide="3"></app-slider>
     `

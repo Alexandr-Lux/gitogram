@@ -21,7 +21,7 @@ const defaultView = () => {
     template: `
       <app-header>
         <template #top>
-          <header-top />
+          <header-top userAvatar="https://picsum.photos/300" />
         </template>
         <template #content>
           <ul class="stories">

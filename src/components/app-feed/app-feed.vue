@@ -6,32 +6,24 @@
     <slot name="repository" />
   </div>
   <div class="issues">
-    <toggler @on-toggle="toggle" />
-    <div class="comments" v-if="shown">
-      <ul class="comments__list">
-        <li class="comments__item" v-for="issue in issues" :key="issue.id">
-          <comment :issue="issue" />
-        </li>
-      </ul>
-    </div>
+    <issues :issues="issues" @loadIssues="$emit('getIssues')" />
   </div>
   <div class="rep-date">
-    {{formatDate}}
+    {{ formatDate }}
   </div>
 </template>
 
 <script>
 import { user } from '../user'
-import { toggler } from '../toggler'
-import { comment } from '../comment'
+import { issues } from '../issues'
 import { months } from '../../helpers/months'
 
 export default {
   components: {
     user,
-    toggler,
-    comment
+    issues
   },
+  emits: ['getIssues'],
   props: {
     username: {
       type: String,
@@ -48,21 +40,6 @@ export default {
     repDate: {
       type: String,
       required: true
-    }
-  },
-  data () {
-    return {
-      shown: false
-    }
-  },
-  emits: ['loadIssues'],
-  methods: {
-    toggle (isOpened) {
-      this.shown = isOpened
-
-      if (isOpened && this.issues.length === 0) {
-        this.$emit('loadIssues')
-      }
     }
   },
   computed: {

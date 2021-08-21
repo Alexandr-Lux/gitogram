@@ -33,7 +33,7 @@
               :avatar="item.owner.avatar_url"
               :issues="item.issues ? item.issues : []"
               :repDate="item.created_at"
-              @loadIssues="getIssues({
+              @getIssues="getIssues({
                 id: item.id,
                 owner: item.owner.login,
                 repo: item.name })"

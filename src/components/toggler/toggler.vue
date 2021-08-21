@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  emits: ['onToggle'],
+  emits: ['toggle'],
   data () {
     return {
       isOpened: false
@@ -18,7 +18,7 @@ export default {
   methods: {
     changeVisability () {
       this.isOpened = !this.isOpened
-      this.$emit('onToggle', this.isOpened)
+      this.$emit('toggle', this.isOpened)
     }
   }
 }

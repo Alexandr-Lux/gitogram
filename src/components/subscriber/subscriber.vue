@@ -29,11 +29,6 @@ export default {
     title: String,
     type: String,
     id: Number
-  },
-  methods: {
-    emitToParent () {
-      this.$emit('checkMyBrains')
-    }
   }
 }
 </script>

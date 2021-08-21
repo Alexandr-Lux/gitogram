@@ -137,6 +137,19 @@ const spinnerView = () => {
   }
 }
 
+const ghView = () => {
+  return {
+    components: {
+      icon
+    },
+    template: `
+    <div style="width: 24px">
+      <icon name="github" />
+    </div>       
+    `
+  }
+}
+
 export { whiteLogoView }
 export { blackLogoView }
 export { forkView }
@@ -147,6 +160,7 @@ export { triangleView }
 export { arrowsView }
 export { closeView }
 export { spinnerView }
+export { ghView }
 
 whiteLogoView.story = {
   name: 'Логотип (белого цвета)'
@@ -186,6 +200,10 @@ closeView.story = {
 
 spinnerView.story = {
   name: 'Спиннер'
+}
+
+ghView.story = {
+  name: 'Гитхаб'
 }
 
 

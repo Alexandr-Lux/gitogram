@@ -18,26 +18,29 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 import { repContent } from '../../components/rep-content'
 
 export default {
   name: 'repos',
   components: { repContent },
-  computed: {
-    ...mapState({
-      repos: state => state.user.repos
-    })
-  },
-  methods: {
-    ...mapActions({
-      getRepos: 'user/getRepos'
-    })
-  },
-  async created () {
-    if (this.repos === null) {
-      await this.getRepos()
+
+  setup () {
+    const { state, dispatch } = useStore()
+
+    const repos = computed(() => state.user.repos)
+
+    const getRepos = async () => {
+      if (repos.value === null) {
+        await dispatch('user/getRepos')
+      }
+    }
+
+    return {
+      getRepos,
+      repos
     }
   }
 }

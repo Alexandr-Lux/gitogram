@@ -29,7 +29,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { useStore } from 'vuex'
+import { computed, onMounted } from 'vue'
 
 import { headerTop } from '../../components/header-top'
 import { appHeader } from '../../components/app-header'
@@ -42,29 +43,30 @@ export default {
     appHeader,
     myProfile
   },
-  computed: {
-    ...mapState({
-      user: state => state.auth.user,
-      starred: state => state.starred.starred,
-      repos: state => state.user.repos
+
+  setup () {
+    const { state, dispatch } = useStore()
+
+    const user = computed(() => state.auth.user)
+    const starred = computed(() => state.starred.starred)
+    const repos = computed(() => state.user.repos)
+
+    onMounted(() => {
+      if (user.value === null) {
+        dispatch('auth/getUser')
+      }
+      if (starred.value === null) {
+        dispatch('starred/getStarred')
+      }
+      if (repos.value === null) {
+        dispatch('user/getRepos')
+      }
     })
-  },
-  methods: {
-    ...mapActions({
-      getUser: 'auth/getUser',
-      getStarred: 'starred/getStarred',
-      getRepos: 'user/getRepos'
-    })
-  },
-  async created () {
-    if (this.user === null) {
-      await this.getUser()
-    }
-    if (this.starred === null) {
-      await this.getStarred()
-    }
-    if (this.repos === null) {
-      await this.getRepos()
+
+    return {
+      user,
+      starred,
+      repos
     }
   }
 }

@@ -13,7 +13,7 @@ const defaultView = () => {
       headerTop
     },
     template: `
-      <header-top theme="light"/>
+      <header-top userAvatar="https://picsum.photos/300"/>
     `
   }
 }

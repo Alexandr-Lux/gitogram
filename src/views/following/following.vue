@@ -17,27 +17,32 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 import { subscriber } from '../../components/subscriber'
 
 export default {
   name: 'following',
   components: { subscriber },
-  computed: {
-    ...mapState({
-      starred: state => state.starred.starred
-    })
-  },
-  emits: ['go'],
-  methods: {
-    ...mapActions({
-      getStarred: 'starred/getStarred',
-      unFollow: 'starred/unFollow'
-    })
-  },
-  async created () {
-    await this.getStarred()
+
+  setup () {
+    const { state, dispatch } = useStore()
+
+    const starred = computed(() => state.starred.starred)
+
+    const unFollow = (id) => {
+      dispatch('starred/unFollow', id)
+    }
+    const getStarred = async () => {
+      await dispatch('starred/getStarred')
+    }
+
+    return {
+      starred,
+      unFollow,
+      getStarred
+    }
   }
 }
 </script>
