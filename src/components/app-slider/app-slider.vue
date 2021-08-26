@@ -44,7 +44,7 @@ export default {
   emits: ['noMoreSlides'],
   computed: {
     ...mapState({
-      trendings: state => state.trendings.data
+      trendings: state => state.trendings.trendings
     }),
     activeBtns () {
       if (this.navBtns === false) return []

@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ...mapState({
-      trendings: state => state.trendings.data,
+      trendings: state => state.trendings.trendings,
       user: state => state.auth.user,
       starred: state => state.starred.starred
     })
@@ -96,11 +96,11 @@ export default {
     }
   },
   async mounted () {
-    if (this.trendings.length === 0) {
-      await this.getTrendings()
-    }
     if (this.starred === null) {
       await this.getStarred()
+    }
+    if (this.trendings.length === 0) {
+      await this.getTrendings()
     }
   }
 }

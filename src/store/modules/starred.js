@@ -6,13 +6,13 @@ export default {
     starred: null
   },
   getters: {
-    getRepoById: (state) => (id) => state.starred.find((item) => item.id === id)
+    getStarredById: (state) => (id) => state.starred.find((item) => item.id === id)
   },
   mutations: {
-    RENDER_STARRED (state, payload) {
+    SET_STARRED (state, payload) {
       state.starred = payload
     },
-    RENDER_ISSUES (state, payload) {
+    SET_ISSUES (state, payload) {
       state.starred = state.starred.map(item => {
         if (payload.id === item.id) {
           item.issues = payload.issues
@@ -30,7 +30,7 @@ export default {
     async getStarred ({ commit }) {
       try {
         const { data } = await api.starred.getStarred()
-        commit('RENDER_STARRED', data)
+        commit('SET_STARRED', data)
       } catch (error) {
         console.log(error)
       }
@@ -39,16 +39,16 @@ export default {
       try {
         const { data } = await api.issues.getIssues({ owner, repo })
         if (data.length !== 0) {
-          commit('RENDER_ISSUES', { id, issues: data })
+          commit('SET_ISSUES', { id, issues: data })
         } else {
-          commit('RENDER_ISSUES', { id, issues: [{ no_issue: 'Issues has not yet been written for this repository' }] })
+          commit('SET_ISSUES', { id, issues: [{ no_issue: 'Issues has not yet been written for this repository' }] })
         }
       } catch (error) {
         console.log(error)
       }
     },
     async unFollow ({ commit, getters }, id) {
-      const { name: repo, owner } = getters.getRepoById(id)
+      const { name: repo, owner } = getters.getStarredById(id)
       try {
         await api.starred.unStarRepo({ owner: owner.login, repo })
         commit('DELETE_STAR', id)

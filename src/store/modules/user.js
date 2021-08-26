@@ -6,7 +6,7 @@ export default {
     repos: null
   },
   mutations: {
-    RENDER_REPOS (state, payload) {
+    SET_REPOS (state, payload) {
       state.repos = payload
     }
   },
@@ -14,7 +14,7 @@ export default {
     async getRepos ({ commit }) {
       try {
         const { data } = await api.repos.getRepos()
-        commit('RENDER_REPOS', data)
+        commit('SET_REPOS', data)
       } catch (error) {
         console.log(error)
       }

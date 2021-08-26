@@ -4,20 +4,34 @@ import { noReadmeTemplate } from '../../helpers/noReadme'
 export default {
   namespaced: true,
   state: {
-    data: []
+    trendings: []
   },
   getters: {
-    getRepoById: (state) => (id) => state.data.find((item) => item.id === id)
+    getRepoById: (state) => (id) => state.trendings.find((item) => item.id === id)
   },
   mutations: {
-    RENDER_TRENDINGS (state, payload) {
-      state.data = payload.map(item => {
-        item.following = { status: false, loading: false, theme: 'green' }
-        return item
-      })
+    SET_TRENDINGS (state, payload) {
+      if (payload.starred === null) {
+        state.trendings = payload.trendings.map(item => {
+          item.following = { status: false, loading: false, theme: 'green' }
+          return item
+        })
+      } else {
+        state.trendings = payload.trendings.map(tr => {
+          const starredTrending = payload.starred.find(st => {
+            return st.id === tr.id
+          })
+          if (starredTrending) {
+            tr.following = { status: true, loading: false, theme: 'grey' }
+          } else {
+            tr.following = { status: false, loading: false, theme: 'green' }
+          }
+          return tr
+        })
+      }
     },
-    RENDER_README (state, payload) {
-      state.data = state.data.map(item => {
+    SET_README (state, payload) {
+      state.trendings = state.trendings.map(item => {
         if (payload.id === item.id) {
           item.readme = payload.readme
         }
@@ -25,7 +39,7 @@ export default {
       })
     },
     SET_FOLLOWING: (state, payload) => {
-      state.data = state.data.map(item => {
+      state.trendings = state.trendings.map(item => {
         if (payload.id === item.id) {
           item.following = payload.following
         }
@@ -34,10 +48,13 @@ export default {
     }
   },
   actions: {
-    async getTrendings ({ commit }) {
+    async getTrendings ({ commit, rootState }) {
       try {
         const { data } = await api.trendings.getTrendings()
-        commit('RENDER_TRENDINGS', data.items)
+        commit('SET_TRENDINGS', {
+          starred: rootState.starred.starred,
+          trendings: data.items
+        })
       } catch (error) {
         console.log(error)
       }
@@ -48,10 +65,10 @@ export default {
 
       try {
         const { data } = await api.readme.getReadme({ owner, repo })
-        commit('RENDER_README', { id, readme: data })
+        commit('SET_README', { id, readme: data })
       } catch (error) {
         if (error.response.status === 404) {
-          commit('RENDER_README', { id, readme: noReadmeTemplate })
+          commit('SET_README', { id, readme: noReadmeTemplate })
         }
       }
     },
