@@ -3,11 +3,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 48px 0 42px;
+  @media (max-width: 374px) {
+    padding: 15px 0 30px;
+  }
 }
 
 .header__logo {
   width: 175px;
   color: #292929;
+  @media (max-width: 374px) {
+    width: 120px;
+  }
 }
 
 .header__nav {
@@ -23,6 +29,9 @@
   color: #292929;
   margin-left: 24px;
   min-height: 20px;
+  @media (max-width: 480px) {
+    margin-left: 15px;
+  }
   &:first-child {
     margin-left: 0;
   }

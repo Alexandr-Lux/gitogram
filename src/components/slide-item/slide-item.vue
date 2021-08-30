@@ -3,7 +3,7 @@
     <div class="slide-wrapper">
       <div class="slide__header">
         <div class="slide__progress-bar">
-          <progress-bar :active="active" :startProgress="startProgress" @onFinish="$emit('onProgressFinish')"/>
+          <progress-bar :active="active" :startProgress="startProgress" />
         </div>
         <div class="slide__user">
           <user

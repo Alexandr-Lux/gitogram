@@ -22,6 +22,11 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  
+  @media (max-width: 374px) {
+    width: 300px;
+    height: 480px;
+  }
 }
 
 .slide__header {
@@ -93,5 +98,15 @@
 
   &-next {
     right: -58px;
+  }
+
+  @media (max-width: 480px) {
+    &-prev {
+      left: -15px;
+    }
+  
+    &-next {
+      right: -15px;
+    }
   }
 }

@@ -9,6 +9,9 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
   margin-bottom: 32px;
+  @media (max-width: 480px) {
+    margin-bottom: 15px;
+  }
   &::-webkit-scrollbar { 
     width: 0px;
   }

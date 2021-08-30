@@ -1,4 +1,7 @@
 .header {
   background-color: #fafafa;
   border-bottom: 1px solid #d3d3d3;
+  @media (max-width: 768px) {
+    border: none;
+  }
 }

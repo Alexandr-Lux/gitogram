@@ -5,6 +5,9 @@
 
 .header {
   padding: 48px 0;
+  @media (max-width: 374px) {
+    padding: 15px 0 30px;
+  }
 }
 
 .header__logo {

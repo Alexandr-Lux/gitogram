@@ -1,5 +1,8 @@
 .user {
   display: flex;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .title {
@@ -12,9 +15,20 @@
   flex: 1;
   border-right: 1px solid #d3d3d3;
   padding: 40px 30px 0 0;
+  @media (max-width: 768px) {
+    border: none;
+    padding: 0 0 80px 0;
+  }
+  @media (max-width: 480px) {
+    border: none;
+    padding: 0 0 30px 0;
+  }
 }
 
 .content {
   flex: 2;
   padding: 40px 0 40px 70px;
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 }
