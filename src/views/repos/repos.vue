@@ -28,18 +28,11 @@ export default {
   components: { repContent },
 
   setup () {
-    const { state, dispatch } = useStore()
+    const { state } = useStore()
 
     const repos = computed(() => state.user.repos)
 
-    const getRepos = async () => {
-      if (repos.value === null) {
-        await dispatch('user/getRepos')
-      }
-    }
-
     return {
-      getRepos,
       repos
     }
   }

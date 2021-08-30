@@ -5,7 +5,6 @@
       <div class="rep-data">
         <div class="rep-title">{{ title }}</div>
         <div class="user-type">{{ type }}</div>
-        {{ id }}
       </div>
     </div>
     <div class="follow-btn">

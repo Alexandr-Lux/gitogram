@@ -20,9 +20,11 @@ export default {
         return item
       })
     },
+    ADD_STAR (state, payload) {
+      state.starred.unshift(payload)
+    },
     DELETE_STAR (state, payload) {
-      const toDelete = state.starred.find(item => item.id === payload)
-      const ndxToDelete = state.starred.indexOf(toDelete)
+      const ndxToDelete = state.starred.indexOf(payload)
       state.starred.splice(ndxToDelete, 1)
     }
   },
@@ -48,10 +50,10 @@ export default {
       }
     },
     async unFollow ({ commit, getters }, id) {
-      const { name: repo, owner } = getters.getStarredById(id)
+      const repo = getters.getStarredById(id)
       try {
-        await api.starred.unStarRepo({ owner: owner.login, repo })
-        commit('DELETE_STAR', id)
+        await api.starred.unStarRepo({ owner: repo.owner.login, repo: repo.name })
+        commit('DELETE_STAR', repo)
       } catch (error) {
         console.log(error)
       }

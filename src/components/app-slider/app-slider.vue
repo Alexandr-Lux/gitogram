@@ -12,8 +12,8 @@
             @clickPrev="handleSlide(slideIndex - 1)"
             @clickNext="handleSlide(slideIndex + 1)"
             @onProgressFinish="handleSlide(slideIndex + 1)"
-            @onFollow="starRepo(item.id)"
-            @onUnFollow="unStarRepo(item.id)"
+            @onFollow="follow(item)"
+            @onUnFollow="unFollow(item)"
           />
         </li>
       </ul>
@@ -23,7 +23,7 @@
 
 <script>
 import { slideItem } from '../slide-item'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -59,6 +59,10 @@ export default {
       getReadme: 'trendings/getReadme',
       starRepo: 'trendings/starRepo',
       unStarRepo: 'trendings/unStarRepo'
+    }),
+    ...mapMutations({
+      addStar: 'starred/ADD_STAR',
+      deleteStar: 'starred/DELETE_STAR'
     }),
     getStoryData (obj) {
       return {
@@ -108,6 +112,14 @@ export default {
       } else {
         this.$emit('noMoreSlides')
       }
+    },
+    async follow (repo) {
+      await this.starRepo(repo.id)
+      this.addStar(repo)
+    },
+    async unFollow (repo) {
+      await this.unStarRepo(repo.id)
+      this.deleteStar(repo)
     }
   },
   async mounted () {

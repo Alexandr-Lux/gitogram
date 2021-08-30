@@ -1,5 +1,5 @@
 <template>
-  <div :class="['user', getClasses()]" @click="$emit('thisReadme')">
+  <div :class="getClasses()" @click="$emit('thisReadme')">
     <div class="user__photo">
       <avatar
         :src="avatar"

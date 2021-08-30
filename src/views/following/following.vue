@@ -10,7 +10,7 @@
         :title="item.full_name"
         :type="item.owner.type"
         :id="item.id"
-        @onUnFollow="unFollow(item.id)"
+        @onUnFollow="unFollow(item)"
       />
     </li>
   </ul>
@@ -18,7 +18,7 @@
 
 <script>
 import { useStore } from 'vuex'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 
 import { subscriber } from '../../components/subscriber'
 
@@ -27,21 +27,23 @@ export default {
   components: { subscriber },
 
   setup () {
-    const { state, dispatch } = useStore()
+    const { state, dispatch, commit } = useStore()
 
     const starred = computed(() => state.starred.starred)
 
-    const unFollow = (id) => {
-      dispatch('starred/unFollow', id)
-    }
-    const getStarred = async () => {
-      await dispatch('starred/getStarred')
+    onMounted(() => {
+      dispatch('trendings/getTrendings')
+    })
+
+    const unFollow = async (repo) => {
+      await dispatch('trendings/unStarRepo', repo.id)
+      console.log(repo.id)
+      commit('starred/DELETE_STAR', repo)
     }
 
     return {
       starred,
-      unFollow,
-      getStarred
+      unFollow
     }
   }
 }

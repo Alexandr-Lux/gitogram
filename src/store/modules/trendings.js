@@ -82,14 +82,25 @@ export default {
         console.log(e)
       }
     },
-    async unStarRepo ({ commit, getters }, id) {
-      commit('SET_FOLLOWING', { id, following: { status: true, loading: true, theme: 'green' } })
-      const { name: repo, owner } = getters.getRepoById(id)
-      try {
-        await api.starred.unStarRepo({ owner: owner.login, repo })
-        commit('SET_FOLLOWING', { id, following: { status: false, loading: false, theme: 'green' } })
-      } catch (e) {
-        console.log(e)
+    async unStarRepo ({ commit, getters, rootGetters }, id) {
+      const repo = getters.getRepoById(id)
+      if (repo) {
+        commit('SET_FOLLOWING', { id, following: { status: true, loading: true, theme: 'green' } })
+        try {
+          await api.starred.unStarRepo({ owner: repo.owner.login, repo: repo.name })
+          commit('SET_FOLLOWING', { id, following: { status: false, loading: false, theme: 'green' } })
+        } catch (e) {
+          console.log(e)
+        }
+      } else {
+        const getterFromStarred = rootGetters['starred/getStarredById']
+        const repo = getterFromStarred(id)
+
+        try {
+          await api.starred.unStarRepo({ owner: repo.owner.login, repo: repo.name })
+        } catch (e) {
+          console.log(e)
+        }
       }
     }
   }

@@ -45,7 +45,7 @@ export default {
   computed: {
     formatDate () {
       const date = this.repDate.split(/-|T/).splice(0, 3).reverse()
-      const formatDate = `${date[0]} ${months[date[1] - 1]}`
+      const formatDate = `${date[0]} ${months[date[1] - 1]} ${date[2]}`
       return formatDate
     }
   }
