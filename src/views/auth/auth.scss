@@ -7,8 +7,7 @@
   background: url('../../assets/auth-main.png') center right -30% / 60% no-repeat;
   @media (max-width: 768px) {
     justify-content: flex-start;
-    background-size: 470px;
-    background-position: bottom center;
+    background: url('../../assets/auth-tab.png') bottom -250px center / 80% no-repeat;
     .auth-wrapper {
       display: flex;
       justify-content: center;
@@ -19,6 +18,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+  }
+  @media (max-width: 480px) {
+    justify-content: flex-end;
+    background: url('../../assets/auth-phone.png') top 8% center / 68% no-repeat;
+    .auth-wrapper {
+      padding-bottom: 10%;
     }
   }
 }
@@ -34,6 +40,10 @@
   font-size: 18px;
   line-height: 1.6;
   max-width: 260px;
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin-bottom: 25px;
+  }
 }
 
 .btn-text {
