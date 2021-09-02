@@ -13,7 +13,8 @@ export const makeRequest = ({
     baseURL,
     headers: {
       ...headers,
-      Authorization: `token ${token}`
+      Authorization: `token ${token}`,
+      CacheControl: 'max-age=0'
     }
   })
 }
